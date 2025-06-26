@@ -1,14 +1,15 @@
 import PostDetails from "@/components/postDetails"
-import { Metadata } from "next"
+import { Metadata , ResolvingMetadata  } from "next"
 
-interface PageProps {
-  params: {
-    id: string
-  }
-  searchParams?: { [key: string]: string | string[] | undefined }
-}
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata>{
   const { id } = await params
   return {
     title: `Post ${id}`,
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function PostPage({ params }: PageProps) {
+export default async function PostPage({ params }: Props) {
   const { id } = await params;
   const postId = parseInt(id);
 
