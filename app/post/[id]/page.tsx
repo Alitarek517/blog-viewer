@@ -1,5 +1,5 @@
 import PostDetails from "@/components/postDetails"
-import { Metadata , ResolvingMetadata  } from "next"
+import { Metadata } from "next"
 
 type Props = {
   params: { id: string };
@@ -7,10 +7,10 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata>{
-  const { id } = await params
+  { params }: Props
+): Promise<Metadata> {
+  const { id } = await params;
+  
   return {
     title: `Post ${id}`,
     description: `Details for post ID: ${id}`
