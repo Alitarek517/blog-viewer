@@ -1,13 +1,9 @@
 import PostDetails from "@/components/postDetails"
 import { Metadata } from "next"
 
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
 
 export async function generateMetadata(
-  { params }: Props
+  { params }: { params: { id: string } }
 ): Promise<Metadata> {
   const { id } = await params;
   
@@ -17,7 +13,7 @@ export async function generateMetadata(
   }
 }
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params }: { params: { id: string } }) {
   const { id } = await params;
   const postId = parseInt(id);
 
