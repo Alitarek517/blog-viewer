@@ -1,9 +1,8 @@
 import PostDetails from "@/components/postDetails"
 import { Metadata } from "next"
 
-
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
   const { id } = await params;
   
@@ -13,7 +12,7 @@ export async function generateMetadata(
   }
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const postId = parseInt(id);
 
